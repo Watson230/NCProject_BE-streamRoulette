@@ -20,11 +20,13 @@ router.post('/search/:username/queries', queriesCtrl.postQueries )
 
 
 // user //
- router.post('/search', userCtrl.postUser)
+ router.post('/user', userCtrl.postUser)
 
- router.post('/search/results/:username/liked', userCtrl.addLikedFilm)
+ router.put('/search/results/:username/liked', userCtrl.addLikedFilm)
 
- router.post('/search/results/:username/Disliked', userCtrl.addDisLikedFilm)
+ router.post('/search/results/:username/Disliked', userCtrl.addDislikedFilm)
+
+ router.post('/search/results/:username/watched', userCtrl.addWatchedFilm)
 
 
 
