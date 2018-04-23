@@ -1,3 +1,4 @@
+
 const express = require('express');
 const router = express.Router();
 
@@ -9,7 +10,7 @@ const userCtrl = require("../controllers/userCtrl")
 
 console.log('api router')
 
-router.get('/', );
+// router.get('/', );
 
 //queries//
 router.post('/search/:username/queries', queriesCtrl.postQueries )
@@ -20,13 +21,15 @@ router.post('/search/:username/queries', queriesCtrl.postQueries )
 
 
 // user //
+
+// router.get('/user/:id'userCtrl)
  router.post('/user', userCtrl.postUser)
 
- router.put('/search/results/:username/liked', userCtrl.addLikedFilm)
+ router.put('/search/results/:id/liked', userCtrl.addLikedFilm)
 
- router.post('/search/results/:username/Disliked', userCtrl.addDislikedFilm)
+ router.put('/search/results/:id/Disliked', userCtrl.addDislikedFilm)
 
- router.post('/search/results/:username/watched', userCtrl.addWatchedFilm)
+ router.put('/search/results/:id/watched', userCtrl.addWatchedFilm)
 
 
 

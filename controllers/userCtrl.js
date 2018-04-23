@@ -27,12 +27,15 @@ function postUser(req,res){
 
 
 function addLikedFilm(req,res){
-
-    let user = req.params.username
+   
+    let user = req.params.id
     let film = req.body.film
 
-    usermodal.findOneAndUpdate({'username':user},{ $push: { likedFilms: film } }, { returnNewDocument: true })
-    .then(user => res.status(200).send(user))
+    usermodal.findOneAndUpdate({'userName':user},{ $push: { likedFilms: film } }, { returnNewDocument: true })
+    .then(user => {
+        
+        res.status(200).send(user
+    )})
     .catch(err => {
         console.log(err);
         return res.status(500).send({ error: err })
@@ -43,10 +46,11 @@ function addLikedFilm(req,res){
 }
 
 function addDislikedFilm(req,res){
-    let user = req.params.username
+    
+    let user = req.params.id
     let film = req.body.film
 
-    usermodal.findOneAndUpdate({'username':user},{ $push: { disLikedFilms: film } }, { returnNewDocument: true })
+    usermodal.findOneAndUpdate({'userName':user},{ $push: { dislikedFilms: film } }, { returnNewDocument: true })
     .then(user => res.status(200).send(user))
     .catch(err => {
         console.log(err);
@@ -56,11 +60,15 @@ function addDislikedFilm(req,res){
 }
 
 function addWatchedFilm(req,res){
-    let user = req.params.username
+    let user = req.params.id
     let film = req.body.film
+   
 
-    usermodal.findOneAndUpdate({'username':user},{ $push: { watchedFilms: film } }, { returnNewDocument: true })
-    .then(user => res.status(200).send(user))
+    usermodal.findOneAndUpdate({'userName':user},{ $push: { watchedFilms: film } }, { returnNewDocument: true })
+    .then(user => {
+        
+        res.status(200).send(user)
+    })
     .catch(err => {
         console.log(err);
         return res.status(500).send({ error: err })
