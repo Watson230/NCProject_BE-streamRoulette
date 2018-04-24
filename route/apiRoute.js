@@ -13,7 +13,7 @@ console.log('api router')
 // router.get('/', );
 
 //queries//
-router.post('/search/:username/queries', queriesCtrl.postQueries )
+router.post('/search/:userName/queries', queriesCtrl.postQueries)
 
 //getRecentQueries//
 
@@ -22,20 +22,21 @@ router.post('/search/:username/queries', queriesCtrl.postQueries )
 
 // user //
 
-// router.get('/user/:id'userCtrl)
- router.post('/user', userCtrl.postUser)
+// router.get('/user/:id', userCtrl.watchedFilms)
 
- router.put('/search/results/:id/liked', userCtrl.addLikedFilm)
+router.post('/user', userCtrl.postUser)
 
- router.put('/search/results/:id/Disliked', userCtrl.addDislikedFilm)
+router.put('/search/results/:id/liked', userCtrl.addLikedFilm)
 
- router.put('/search/results/:id/watched', userCtrl.addWatchedFilm)
+router.put('/search/results/:id/Disliked', userCtrl.addDislikedFilm)
+
+router.put('/search/results/:id/watched', userCtrl.addWatchedFilm)
 
 
 
 //films//
 
-module.exports = {router}
+module.exports = { router }
 
 
 

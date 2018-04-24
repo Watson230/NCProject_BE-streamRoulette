@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 
 const queriesSchema = new Schema({
-  user: {
+  userName: {
     type: String,
     required: false
   },
@@ -22,9 +22,9 @@ const queriesSchema = new Schema({
   rating: {
     type: Number,
     required: false,
-    default: 0
+   
   },
-  releaseDate: {
+  releaseYear: {
     type: String,
     lowercase: false
   },

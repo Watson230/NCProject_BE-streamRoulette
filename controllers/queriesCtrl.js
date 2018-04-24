@@ -3,20 +3,19 @@ const queriesModel = require('../modal/queries')
 
 
 function postQueries(req,res){
-    console.log(req)
-    console.log("postQueries")
+   
 
-    let userName = req.params.user
+    let userName = req.params.userName
 
     const query = queriesModel({
-        user:userName,
-        genre:req.body.genre,
-        title:req.body.title,
-        keywords:req.body.keywords,
-        rating: req.body.rating,
-        releaseDate: req.body.releaseDate,
-        director: req.body.director,
-        starring: req.body.starring
+        userName:userName,
+        genre:req.body.queries.genre,
+        title:req.body.queries.title,
+        keywords:req.body.queries.keywords,
+        rating: req.body.queries.rating,
+        releaseYear: req.body.queries.year,
+        director: req.body.queries.director,
+        starring: req.body.queries.starring
 
 
        
