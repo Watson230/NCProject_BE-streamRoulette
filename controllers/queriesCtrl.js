@@ -4,7 +4,7 @@ const queriesModel = require('../modal/queries')
 
 function postQueries(req,res){
    
-
+   
     let userName = req.params.userName
 
     const query = queriesModel({
