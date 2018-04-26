@@ -6,6 +6,7 @@ const router = express.Router();
 
 const queriesCtrl = require("../controllers/queriesCtrl")
 const userCtrl = require("../controllers/userCtrl")
+const filmCtrl = require("../controllers/filmCtrl")
 
 
 console.log('api router')
@@ -19,14 +20,25 @@ router.post('/search/:userName/queries', queriesCtrl.postQueries)
 
 // router.get('/search/:username/queries', queriesCtrl.getRecentQueries)
 
+router.get('/film/find/:id', filmCtrl.findFilm)
 
+router.get('/film/liked', filmCtrl.getLikedFilms)
+
+router.get('/film/disliked', filmCtrl.getDislikedFilms)
+
+router.put('/film/:id/likes', filmCtrl.updateFilmLikes)
+router.put('/film/:id/dislikes', filmCtrl.updateFilmDisikes)
+
+router.post(`/film`, filmCtrl.postFilm)
 // user //
 
 // router.get('/user/:id', userCtrl.watchedFilms)
 
 router.post('/user', userCtrl.postUser)
 
-router.put('/search/results/:id/liked', userCtrl.addLikedFilm)
+router.get('/user/:userName', userCtrl.getUser)
+
+router.put('/search/results/liked/:id', userCtrl.addLikedFilm)
 
 router.put('/search/results/:id/Disliked', userCtrl.addDislikedFilm)
 
