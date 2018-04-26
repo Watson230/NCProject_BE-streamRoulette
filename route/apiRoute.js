@@ -40,7 +40,7 @@ router.get('/user/:userName', userCtrl.getUser)
 
 router.put('/search/results/liked/:id', userCtrl.addLikedFilm)
 
-router.put('/search/results/:id/Disliked', userCtrl.addDislikedFilm)
+router.put('/search/results/disliked/:id', userCtrl.addDislikedFilm)
 
 router.put('/search/results/:id/watched', userCtrl.addWatchedFilm)
 

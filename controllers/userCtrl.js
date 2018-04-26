@@ -9,10 +9,10 @@ function postUser(req, res) {
         likedFilms: [],
         disLikedFilms: [],
         watchedFilms: []
-        })
-        .save().then(user => {
-        res.status(200).send(user)
     })
+        .save().then(user => {
+            res.status(200).send(user)
+        })
         .catch(err => {
             console.log(err);
             return res.status(500).send({ error: err })
@@ -46,13 +46,12 @@ function addLikedFilm(req, res) {
 
             res.status(200).send(user)
         })
-        .then(()=>filmModal.findOneAndUpdate({'title':film.title},{ $inc: { likes: 1 } }, { 'new': true }) )
+        .then(() => filmModal.findOneAndUpdate({ 'title': film.title }, { $inc: { likes: 1 } }, { 'new': true }))
         .catch(err => {
             console.log(err);
             return res.status(500).send({ error: err })
         })
 
-       filmModal.findOneAndUpdate({'title':film.title},{ $inc: { likes: 1 } }, { 'new': true }) 
 
 
 }
@@ -63,8 +62,10 @@ function addDislikedFilm(req, res) {
     let film = req.body.film
 
     console.log(user)
+    console.log(film)
     userModal.findOneAndUpdate({ 'userName': user }, { $push: { dislikedFilms: film } }, { returnNewDocument: true })
         .then(user => res.status(200).send(user))
+        .then(() => filmModal.findOneAndUpdate({ 'title': film.title }, { $inc: { disLikes: 1 } }, { 'new': true }))
         .catch(err => {
             console.log(err);
             return res.status(500).send({ error: err })
@@ -94,4 +95,4 @@ function addWatchedFilm(req, res) {
 
 
 
-module.exports = { postUser, addLikedFilm, addDislikedFilm, addWatchedFilm, getUser}
+module.exports = { postUser, addLikedFilm, addDislikedFilm, addWatchedFilm, getUser }

@@ -58,10 +58,10 @@ function updateFilmLikes(req, res) {
 
 function updateFilmDisikes(req, res) {
 
-    
+    let filmId = req.params.id
     let film = req.body.film
 
-    filmModal.findOneAndUpdate({ 'id': filmId }, { $inc: { dislikes: 1 } }, { 'new': true })
+    filmModal.findOneAndUpdate({ 'id': filmId }, { $inc: { disLikes: 1 } }, { 'new': true })
         .then(film => {
 
             res.status(200).send(film)
@@ -94,7 +94,7 @@ function getDislikedFilms (req,res){
 
     console.log('mostdisliked')
 
-    filmModal.find({}).sort({dislikes:-1}).limit(10)
+    filmModal.find({}).sort({disLikes:-1}).limit(10)
     .then(films => {
         console.log(`least popular films`, films)
         return res.status(200).send(films)
