@@ -7,6 +7,7 @@ function postFilm(req, res) {
         id: req.body.film.id,
         likes: 0,
         disLikes: 0,
+        watched:0,
         film: req.body.film
     })
         .save().then(film => {
@@ -75,11 +76,11 @@ function updateFilmDisikes(req, res) {
 }
 
 function getLikedFilms (req,res){
-    console.log('mostliked')
+    
 
     filmModal.find({}).sort({likes:-1}).limit(10)
     .then(films => {
-        console.log(`most popular films`, films)
+       
         return res.status(200).send(films)
     })
     .catch(err => {
@@ -92,11 +93,28 @@ function getLikedFilms (req,res){
 
 function getDislikedFilms (req,res){
 
-    console.log('mostdisliked')
+    
 
     filmModal.find({}).sort({disLikes:-1}).limit(10)
     .then(films => {
-        console.log(`least popular films`, films)
+        
+        return res.status(200).send(films)
+    })
+    .catch(err => {
+        console.log(err);
+        return res.status(500).send({ error: err })
+
+    })
+
+}
+
+function getMostWatchedFilms (req,res){
+
+    
+
+    filmModal.find({}).sort({watched:-1}).limit(10)
+    .then(films => {
+        console.log(`most watched films`, films)
         return res.status(200).send(films)
     })
     .catch(err => {
@@ -112,4 +130,4 @@ function getDislikedFilms (req,res){
 
 
 
-module.exports = { findFilm, postFilm, updateFilmLikes, updateFilmDisikes, getLikedFilms, getDislikedFilms}
+module.exports = { findFilm, postFilm, updateFilmLikes, updateFilmDisikes, getLikedFilms, getDislikedFilms, getMostWatchedFilms}

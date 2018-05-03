@@ -29,6 +29,11 @@ const filmSchema = new Schema({
     disLikes: {
         type: Number,
         required: false
+    },
+
+    watched:{
+        type: Number,
+        required: false
     }
 
 })

@@ -26,6 +26,8 @@ router.get('/film/liked', filmCtrl.getLikedFilms)
 
 router.get('/film/disliked', filmCtrl.getDislikedFilms)
 
+router.get('/film/watched', filmCtrl.getMostWatchedFilms)
+
 router.put('/film/:id/likes', filmCtrl.updateFilmLikes)
 router.put('/film/:id/dislikes', filmCtrl.updateFilmDisikes)
 

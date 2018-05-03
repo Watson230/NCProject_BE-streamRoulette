@@ -1,4 +1,7 @@
 if (!process.env.NODE_ENV) process.env.NODE_ENV = 'dev';
+require('dotenv').config({
+  path: `./.${process.env.NODE_ENV}.env`
+});
 
 var express = require('express');
 var mongoose = require('mongoose');
@@ -13,8 +16,8 @@ mongoose.Promise = Promise;
 function mongooseConnect() {
 
 
-    return mongoose.connect(db)
-        .then(() => console.log('successfully connected to', db))
+    return mongoose.connect(process.env.DB_URI)
+        .then(() => console.log(`successfully connected to ${process.env.NODE_ENV} database`))
         .catch(err => console.log('connection failed', err));
 
 }

@@ -84,6 +84,7 @@ function addWatchedFilm(req, res) {
             console.log(user)
             res.status(200).send(user)
         })
+        .then(() => filmModal.findOneAndUpdate({ 'title': film.title }, { $inc: { watched: 1 } }, { 'new': true }))
         .catch(err => {
             console.log(err);
             return res.status(500).send({ error: err })
