@@ -3,28 +3,40 @@ require('dotenv').config({
   path: `./.${process.env.NODE_ENV}.env`
 });
 
-var express = require('express');
-var mongoose = require('mongoose');
-var bodyParser = require('body-parser');
-var app = express();
-var config = require('./config');
-var cors = require('cors')
-var db = config.DB[process.env.NODE_ENV] || process.env.DB;
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const app = express();
+const config = require('./config');
+const cors = require('cors')
+const path = require('path');
+const db = config.DB[process.env.NODE_ENV] || process.env.DB;
 mongoose.Promise = Promise;
 
-
-function mongooseConnect() {
-
-
-    return mongoose.connect(process.env.DB_URI)
+  mongoose.connect(process.env.DB_URI)
         .then(() => console.log(`successfully connected to ${process.env.NODE_ENV} database`))
         .catch(err => console.log('connection failed', err));
-
-}
 
 
 app.use(cors())
 
 app.use(bodyParser.json());
 
-module.exports = { app, mongooseConnect };
+app.get('/', (req, res)=>{  
+  return res.status(200).sendfile(path.join(__dirname + '/endPoints.html'));
+})
+
+app.use('/api',apirouter)
+
+app.use((err, req, res, next) => {
+  if (err.status === 400) return res.status(400).send(`${err.msg}`);
+  if (err.status === 404) return res.status(404).send(`${err.msg}`);
+  next();
+});
+
+app.use((err, req, res) => {
+  return res.status(500).send('500 - An unknown error has occurred ');
+});
+
+
+module.exports = { app};
