@@ -30,10 +30,7 @@ function getUser(req, res, next) {
         .catch(err => {
             console.log(err);
             return next(err)
-
         })
-
-
 }
 
 function addLikedFilm(req, res,next) {
@@ -49,9 +46,6 @@ function addLikedFilm(req, res,next) {
         .catch(err => {    
             return next(err)
         })
-
-
-
 }
 
 function addDislikedFilm(req, res,next) {

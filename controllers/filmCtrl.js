@@ -1,6 +1,6 @@
 const filmModal = require("../modal/flim")
 
-function postFilm(req, res) {
+function postFilm(req, res, next) {
 
     const film = filmModal({
         title: req.body.film.title,
@@ -20,7 +20,7 @@ function postFilm(req, res) {
         })
 }
 
-function findFilm(req, res) {
+function findFilm(req, res, next) {
 
     let filmId = req.params.id
     console.log(filmId)
@@ -36,7 +36,7 @@ function findFilm(req, res) {
 
 }
 
-function updateFilmLikes(req, res) {
+function updateFilmLikes(req, res, next) {
     let filmId = req.params.id
     let film = req.body.film
 
@@ -49,7 +49,7 @@ function updateFilmLikes(req, res) {
         })
 }
 
-function updateFilmDisikes(req, res) {
+function updateFilmDisikes(req, res, next) {
 
     let filmId = req.params.id
     let film = req.body.film
@@ -64,7 +64,7 @@ function updateFilmDisikes(req, res) {
 
 }
 
-function getLikedFilms (req,res){
+function getLikedFilms (req,res, next){
 
     filmModal.find({}).sort({likes:-1}).limit(10)
     .then(films => { 
