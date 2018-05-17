@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>Document</title>
+   
+
+   
+</head>
+<body>
+
+<h1>Stream Roulette Api Documentation</h1>
+
+
+  
+      <h1>Films </h1>
+
+       <h3>Get</h3>
+
+       <h4>/api/films/:id</h4>
+   <p>finds film with specified Id</p>
+
+      <h4>/api/film/liked</h4> 
+   gives array of the 10 most films with the most likes
+
+   <h4>/api/film/disliked</h4> 
+   gives array of the 10 most films with the most dislikes
+
+   <h4>/api/film/watched</h4> 
+   gives array of the 10 most watched films
+
+   <h4>/api/films/:id/likes</h4>
+   <p>updates a films like count</p>
+
+   <h4>/api/films/:id/dislikes</h4>
+   <p>updates a films dislike count</p>
+
+  <h3>Post</h3>
+   
+   <h4>/api/film</h4> 
+   saves a new film to DB. requieres film object in req body
+   
+  <h1>Search Queires</h1>
+
+   <h3>PUT</h3>
+
+   <h4>/api/search/results/liked/:userId</h4> 
+   adds a film to a users liked films
+
+   <h4>/api/search/results/disliked/:userId</h4> 
+   adds a film to a users disliked films
+
+   <h4>/api/search/results/watched/:userId</h4> 
+   adds a film to a users watched films
+
+   <h4>/api/search/:userId/queires</h4> 
+  saves a users search quieres
+   
+  <h1>User</h1>
+
+   <h3>GET</h3>
+
+   <h4>/api/user/:username</h4> 
+   gets full viewing and search history of a user
+
+   <h3>POST</h3>
+   <h4>/api/user</h4> 
+   Saves new user to database, requires user object in req.body
+
+</body>
+</html>
+
+
+
+
+
+
