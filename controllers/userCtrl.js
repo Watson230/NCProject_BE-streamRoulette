@@ -11,24 +11,24 @@ function postUser(req, res, next) {
         watchedFilms: []
     })
         .save().then(user => {
-            res.status(200).send(user)
+           return  res.status(200).send(user)
         })
         .catch(err => {
-            console.log(err);
+            if (err.name === 'ValidationError') return next({status: 400, msg: `${err.errors.body.message} no film object sent in request body`});
+            if (err.name === 'CastError') return next({ status: 404, msg: `Unable to post comment, article ${articleId} does not exist` });
             return next(err)
 
         })
 }
 
 function getUser(req, res, next) {
-    let user = req.params.userName
+    const user = req.params.userName
     userModal.find({ 'userName': user })
         .then(user => {
-            console.log(user)
-            res.status(200).send(user)
+            return res.status(200).send(user)
         })
-        .catch(err => {
-            console.log(err);
+        .catch(err => {    
+            if (err.name === 'CastError') return next({ status: 404, msg: `User ${user} does not exist` });
             return next(err)
         })
 }
@@ -43,7 +43,8 @@ function addLikedFilm(req, res,next) {
             res.status(200).send(user)
         })
         .then(() => filmModal.findOneAndUpdate({ 'title': film.title }, { $inc: { likes: 1 } }, { 'new': true }))
-        .catch(err => {    
+        .catch(err => {  
+            if (err.name === 'CastError') return next({ status: 404, msg: `user ${user} does not exist` });  
             return next(err)
         })
 }
@@ -57,6 +58,7 @@ function addDislikedFilm(req, res,next) {
         .then(user => res.status(200).send(user))
         .then(() => filmModal.findOneAndUpdate({ 'title': film.title }, { $inc: { disLikes: 1 } }, { 'new': true }))
         .catch(err => {   
+            if (err.name === 'CastError') return next({ status: 404, msg: `user ${user} does not exist` });  
             return next(err)
         })
 }
@@ -69,7 +71,8 @@ function addWatchedFilm(req,res,next) {
             res.status(200).send(user)
         })
         .then(() => filmModal.findOneAndUpdate({ 'title': film.title }, { $inc: { watched: 1 } }, { 'new': true }))
-        .catch(err => {   
+        .catch(err => {  
+            if (err.name === 'CastError') return next({ status: 404, msg: `user ${user} does not exist` }); 
             return next(err)
         })
 }

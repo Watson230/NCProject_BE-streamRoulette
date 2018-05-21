@@ -15,8 +15,8 @@ function postFilm(req, res, next) {
             return res.status(200).send(film)
         })
         .catch(err => {
+            if (err.name === 'ValidationError') return next({status: 400, msg: `${err.errors.body.message} no film object sent in request body`});
             return next(err)
-
         })
 }
 
@@ -31,6 +31,7 @@ function findFilm(req, res, next) {
             return res.status(200).send(film)
         })
         .catch(err => {
+            if (err.name === 'CastError') return next({ status: 404, msg: `film ${filmId} does not exist` });
             return next(err)
         })
 
@@ -38,13 +39,12 @@ function findFilm(req, res, next) {
 
 function updateFilmLikes(req, res, next) {
     let filmId = req.params.id
-    let film = req.body.film
-
     filmModal.findOneAndUpdate({ 'id': filmId}, { $inc: { likes: 1 } }, { 'new': true })
         .then(film => {
-            res.status(200).send(film)
+            return res.status(200).send(film)
         })
         .catch(err => {
+            if (err.name === 'CastError') return next({ status: 404, msg: `film ${filmId} does not exist` });
             return next(err)
         })
 }
@@ -52,13 +52,13 @@ function updateFilmLikes(req, res, next) {
 function updateFilmDisikes(req, res, next) {
 
     let filmId = req.params.id
-    let film = req.body.film
 
     filmModal.findOneAndUpdate({ 'id': filmId }, { $inc: { disLikes: 1 } }, { 'new': true })
         .then(film => {
-            res.status(200).send(film)
+           return res.status(200).send(film)
         })
         .catch(err => {
+            if (err.name === 'CastError') return next({ status: 404, msg:`film ${filmId} does not exist` });
             return next(err)
         })
 

@@ -14,8 +14,8 @@ function postQueries(req,res,next){
     }).save().then(newQuery =>{res.status(200).send(newQuery)})
     .catch(err => {
         console.log(err);
+        if (err.name === 'CastError') return next({ status: 404, msg: `user ${user} does not exist` });  
         return next(err)
-
     })
 }
 
