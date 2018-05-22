@@ -2,21 +2,21 @@ const express = require('express');
 const router = express.Router();
 
 const {findFilm,postFilm,updateFilmDisikes,updateFilmLikes,
-    getDislikedFilms,getLikedFilms,getMostWatchedFilms} = require('../controllers/filmCtrl')
+    getDislikedFilms,getLikedFilms,getMostWatchedFilms} = require('../controllers/filmCtrl');
 
 
-router.get('/find/:id', filmCtrl.findFilm)
+router.get('/find/:id', findFilm);
 
-router.get('/liked', filmCtrl.getLikedFilms)
+router.get('/liked', getLikedFilms);
 
-router.get('/disliked', filmCtrl.getDislikedFilms)
+router.get('/disliked', getDislikedFilms);
 
-router.get('/watched', filmCtrl.getMostWatchedFilms)
+router.get('/watched', getMostWatchedFilms);
 
-router.put('/:id/likes', filmCtrl.updateFilmLikes)
-router.put('/:id/dislikes', filmCtrl.updateFilmDisikes)
+router.put('/:id/likes', updateFilmLikes);
+router.put('/:id/dislikes', updateFilmDisikes);
 
-router.post(``, filmCtrl.postFilm)
+router.post('', postFilm);
 
 
- module.exports={router}
+module.exports={router};

@@ -7,15 +7,15 @@ const userSchema = new Schema({
     userName: {
         type: String,
         required: true
-      },
+    },
 
-      likedFilms:{
-          type:Array,
-          required:false,
-          default:[]
-      },
+    likedFilms:{
+        type:Array,
+        required:false,
+        default:[]
+    },
 
-      dislikedFilms:{
+    dislikedFilms:{
         type:Array,
         required:false,
         default:[]

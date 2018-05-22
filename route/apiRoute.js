@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-const userRoute = require('./userRoute')
-const filmRoute =  require('./filmRoute')
-const searchRoute = require('./searchRoute')
+const userRoute = require('./userRoute');
+const filmRoute =  require('./filmRoute');
+const searchRoute = require('./searchRoute');
 
 // router.get('/', );
 
@@ -18,7 +18,7 @@ router.use('/user', userRoute);
 
 
 
-module.exports = { router }
+module.exports = { router };
 
 
 

@@ -1,2 +1,2 @@
-*.emv
+.eslintrc.js
 node_modules
