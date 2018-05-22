@@ -23,7 +23,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.get('/', (req, res)=>{  
-    return res.status(200).sendfile(path.join(__dirname + '/endPoints.html'));
+    return res.status(200).sendfile(path.join(__dirname + '/endpointt.html'));
 });
 
 app.use('/api',apiRoute);
